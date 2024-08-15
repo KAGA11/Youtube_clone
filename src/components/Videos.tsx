@@ -1,21 +1,8 @@
 import React from 'react'
 import { Stack, Box } from '@mui/material';
 import { VideoCard, ChannelCard } from './index'
+import { VideoWithVideoId, VideoWithChannelId, Video, VideosProps  } from '../types/index'
 
-interface Video {
-  id:{
-    videoId:string,
-    channelId: string,
-  },
-  snippet:any,
-  channelDetail : any,
-  marginTop?: string | number
-}
-
-interface VideosProps {
-  videos : Video[],
-  direction?: 'row' | 'column'
-}
 
 const Videos:React.FC<VideosProps> = ( { videos,direction } ) => {
 
@@ -28,10 +15,12 @@ const Videos:React.FC<VideosProps> = ( { videos,direction } ) => {
         {videos?.map( (item,i) => (
             <Box key={i}>
                 {/* itme 会返回视频或者一个作者的channel */}
-                {item.id.videoId && <VideoCard video={item} /> }
-                {item.id.channelId && <ChannelCard channelDetail={item} /> }
+                {item.id.videoId ? (
+                  <VideoCard video={item as VideoWithVideoId} />
+                ) : item.id.channelId ? (
+                  <ChannelCard channelDetail={item as VideoWithChannelId} />
+                ) : null}
             </Box>
-
         ) )  }
    </Stack>
   )

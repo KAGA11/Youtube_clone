@@ -1,12 +1,7 @@
 import React from 'react'
 import { Stack } from '@mui/material'
 import { categories } from '../utils/constants'
-
-interface SidebarProps {
-  selectedCategory:string,
-  setSelectedCategory:( category:string )=> void;
-}
-
+import { SidebarProps } from '../types'
 
 const Sidebar:React.FC<SidebarProps> = ({ selectedCategory, setSelectedCategory }) => {
   return (

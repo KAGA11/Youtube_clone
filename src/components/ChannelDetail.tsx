@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import { Box } from '@mui/material'
-import { Videos, ChannelCard } from './'
+import { Videos, ChannelCard } from '.'
 import { fetchFromAPI } from '../utils/fetchFromAPI'
 
 const ChannelDetail = () => {
@@ -35,7 +35,7 @@ const ChannelDetail = () => {
           }}>  
         </div>
         {/* user info  */}
-        <ChannelCard channelDetail={channelDetail} marginTop={'-110px'}/>
+        { channelDetail && (<ChannelCard channelDetail={channelDetail} marginTop={'-110px'}/>) }
       </Box>
       
       <Box display='flex' p="2">

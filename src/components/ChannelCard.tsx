@@ -4,6 +4,7 @@ import { CheckCircle } from '@mui/icons-material'
 import { Link } from 'react-router-dom'
 
 import { demoProfilePicture } from '../utils/constants'
+import { ChannelCardProps } from '../types'
 
 
 
@@ -35,25 +36,7 @@ import { demoProfilePicture } from '../utils/constants'
 //   }
 // }
 
-interface ChannelCardProps {
-  channelDetail: {
-    id : {
-      channelId: string
-    },
-    snippet: {
-      title:string,
-      thumbnails:{
-        high:{
-          url:string
-        }
-      }
-    },
-    statistics?:{
-      subscriberCount : string 
-    },
-  },
-  marginTop?: string | number
-}
+
 
 const ChannelCard: React.FC<ChannelCardProps> = ( { channelDetail,marginTop } ) => {
   const channelId = channelDetail?.id?.channelId

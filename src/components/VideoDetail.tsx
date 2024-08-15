@@ -4,7 +4,8 @@ import ReactPlayer from 'react-player'
 import { Stack, Box, Typography } from '@mui/material'
 import { CheckCircle } from '@mui/icons-material'
 
-import { Videos } from './'
+import { Video, videoDetail } from '../types'
+import { Videos } from '.'
 import { fetchFromAPI } from '../utils/fetchFromAPI'
 
 // {
@@ -117,10 +118,9 @@ import { fetchFromAPI } from '../utils/fetchFromAPI'
 //   }
 // }
 
-
-const VideoDetail = () => {
-  const [ videoDetail, setVideoDetail] = useState(null)
-  const [ videos,setVideos ] =useState(null)
+const VideoDetail:React.FC = () => {
+  const [ videoDetail, setVideoDetail] = useState<videoDetail | null>(null)
+  const [ videos,setVideos ] =useState<Video[]>([])
   const { id } = useParams();
 
   useEffect(()=>{
@@ -141,23 +141,26 @@ const VideoDetail = () => {
   }
 
   
-  const { snippet: {title,channelId, channelTitle }, statistics:{viewCount, likeCount} } = videoDetail;
-
-  console.log(viewCount,likeCount);
+  const { snippet: {title,channelId, channelTitle }, statistics:{viewCount, likeCount} = {} } = videoDetail;
   
   return (
     <Box minHeight='95vh'>
       <Stack direction={{ xs:'column', md: 'row' }}>
           <Box flex={1}>
             <Box sx={{ width:'100%',position:'sticky', top:'86px' }}>
-              <ReactPlayer url={`https:://www.youtube.com/watch?v=${id}`}
+              <ReactPlayer url={`https://www.youtube.com/watch?v=${id}`}
               className="react-player" controls />
               <Typography color="#fff" variant='h5' fontWeight="bold" p={2}>
                 {title}
               </Typography>
               <Stack direction="row" justifyContent="space-between" sx={{color:'#fff' }} py={1} px={2}>
                   <Link to={`/channel/${channelId}`}>
-                    <Typography variant={{ sm: 'subtitle1',md:'h6'}} sx={{color:'white' }}>
+                    <Typography
+                        sx={{
+                          color: 'white',
+                          typography: { xs: 'subtitle1', md: 'h6' } 
+                        }}
+                      >
                         {channelTitle}
                         <CheckCircle sx={{ fontSize:'12px', color:'gray', ml:'5px' }} />
                     </Typography>
@@ -165,10 +168,10 @@ const VideoDetail = () => {
                   <Stack direction="row" gap='20px' alignItems='center'>
                     <Typography variant='body1' sx={{ opacity:0.7 }}>
                         {/* 转换播放数 */}
-                        {parseInt(viewCount).toLocaleString()} views
+                        {parseInt(viewCount || '0').toLocaleString()} views
                     </Typography>
                     <Typography variant='body1' sx={{ opacity:0.7 }}>
-                        {parseInt(likeCount).toLocaleString()} likes
+                        {parseInt(likeCount || '0').toLocaleString()} likes
                     </Typography>
                   </Stack>
               </Stack>

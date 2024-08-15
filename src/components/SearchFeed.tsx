@@ -3,10 +3,11 @@ import { Typography, Box } from "@mui/material";
 import { useParams } from "react-router-dom";
 
 import { fetchFromAPI } from "../utils/fetchFromAPI";
-import { Videos } from "./";
+import { Videos } from ".";
+import { Video } from "../types";
 
 const SearchFeed = () => {
-  const [videos, setVideos] = useState(null);
+  const [ videos, setVideos] = useState<Video[]>([]);
   const { searchTerm } = useParams();
 
   useEffect(() => {

@@ -4,16 +4,20 @@ import { Link } from 'react-router-dom'
 import { CheckCircle } from '@mui/icons-material'
 
 import { demoVideoUrl, demoVideoTitle, demoChannelUrl, demoChannelTitle } from '../utils/constants'
+import { VideoWithVideoId } from '../types'
 
+interface VideoCardProps {
+    video: VideoWithVideoId;
+}
 
-
-const VideoCard = ( { video: { id: { videoId }, snippet } } ) => {
+const VideoCard: React.FC<VideoCardProps>  = ( { video: { id: { videoId }, snippet } } ) => {
   
   return (
     // 每个视频框大小 移动端适配
    <Card sx={{ width: { md: '295px', xs : '100%' }, boxShadow:'none', borderRadius:'0' }}>
         <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
             <CardMedia  
+            component="img"
             sx={{ width: { xs:'100%', sm:'358px' }, height: 180}}
             alt={snippet?.title}
             image={snippet?.thumbnails?.high?.url} />
