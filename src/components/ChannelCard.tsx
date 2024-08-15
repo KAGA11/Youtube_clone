@@ -35,13 +35,30 @@ import { demoProfilePicture } from '../utils/constants'
 //   }
 // }
 
-const ChannelCard = ( { channelDetail,marginTop } ) => {
-  console.log(channelDetail,'111');
-  
+interface ChannelCardProps {
+  channelDetail: {
+    id : {
+      channelId: string
+    },
+    snippet: {
+      title:string,
+      thumbnails:{
+        high:{
+          url:string
+        }
+      }
+    },
+    statistics?:{
+      subscriberCount : string 
+    },
+  },
+  marginTop?: string | number
+}
 
+const ChannelCard: React.FC<ChannelCardProps> = ( { channelDetail,marginTop } ) => {
   const channelId = channelDetail?.id?.channelId
-
-  console.log(channelDetail?.snippet?.thumbnails?.high.url);
+  const thumbnailUrl = channelDetail?.snippet?.thumbnails?.high.url || demoProfilePicture;
+  // console.log(channelDetail?.snippet?.thumbnails?.high.url);
   
   return (
     <Box
@@ -61,11 +78,12 @@ const ChannelCard = ( { channelDetail,marginTop } ) => {
             sx={{ display:'flex', flexDirection:'column', justifyContent:'center', textAlign:'center', color:'#fff' }}
           > 
             <CardMedia
-              image={channelDetail?.snippet?.thumbnails?.high.url || demoProfilePicture}
+              component="img"
+              image={thumbnailUrl}
               alt={channelDetail?.snippet?.title}
-              sx={{ borderRadius: '50%', height: '180px', width:'180px', mb:2, border: '1px solid #e3e3e3' }}
-            >
-            </CardMedia>
+              sx={{ borderRadius: '50%', height: '180px', width: '180px', mb: 2, border: '1px solid #e3e3e3' }}
+            />
+
             <Typography variant='h6'>
               {channelDetail?.snippet?.title}
               <CheckCircle sx={{ fontSize: 14, color:'gray',ml:'5px'}} />

@@ -4,7 +4,7 @@ import { Sidebar,Videos }  from './index'
 import { fetchFromAPI } from '../utils/fetchFromAPI'
 
 // Feed 是主页
-const Feed = () => {
+const Feed:React.FC = () => {
 
   const [selectedCategory, setSelectedCategory] = useState('New')
   const [videos, setVideos] = useState([])
@@ -28,7 +28,6 @@ const Feed = () => {
             sx={{ mt:1.5, color:'#fff' }}
           >
             Copyright 2024 KAGA11 Media
-
           </Typography>
         </Box>
 
@@ -43,8 +42,6 @@ const Feed = () => {
           <Videos videos={videos}/>
 
         </Box>
-
-
     </Stack>
   )
 }

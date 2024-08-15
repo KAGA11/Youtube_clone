@@ -2,9 +2,23 @@ import React from 'react'
 import { Stack, Box } from '@mui/material';
 import { VideoCard, ChannelCard } from './index'
 
-const Videos = ( { videos,direction } ) => {
+interface Video {
+  id:{
+    videoId:string,
+    channelId: string,
+  },
+  snippet:any,
+  channelDetail : any,
+  marginTop?: string | number
+}
 
-  // console.log(videos);
+interface VideosProps {
+  videos : Video[],
+  direction?: 'row' | 'column'
+}
+
+const Videos:React.FC<VideosProps> = ( { videos,direction } ) => {
+
   if (!videos) {
     return <div>Loading...</div>
   }
