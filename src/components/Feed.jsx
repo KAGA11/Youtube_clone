@@ -3,7 +3,7 @@ import { Box, Stack, Typography } from '@mui/material'
 import { Sidebar,Videos }  from './index'
 import { fetchFromAPI } from '../utils/fetchFromAPI'
 
-
+// Feed 是主页
 const Feed = () => {
 
   const [selectedCategory, setSelectedCategory] = useState('New')
@@ -36,8 +36,7 @@ const Feed = () => {
         <Box p={2} sx = {{ overflowY:'auto', height:'90vh', flex:2 }}>
           {/* TITILE */}
           <Typography variant='h4' fontWeight="bold" mb={2} sx={{ color:'white' }}>
-            New <span style={{ color: '#F31503' }}>{selectedCategory}</span>
-
+            <span style={{ color: '#F31503' }}>{selectedCategory}</span>
           </Typography>
 
           {/* 视频VIDEOS 列表 */}
