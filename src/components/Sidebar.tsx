@@ -2,8 +2,10 @@ import React from 'react'
 import { Stack } from '@mui/material'
 import { categories } from '../utils/constants'
 import { SidebarProps } from '../types'
+import { useTheme } from '../ThemeContext'
 
 const Sidebar:React.FC<SidebarProps> = ({ selectedCategory, setSelectedCategory }) => {
+  const { theme } = useTheme()
   return (
     <Stack
       direction="row"
@@ -19,12 +21,12 @@ const Sidebar:React.FC<SidebarProps> = ({ selectedCategory, setSelectedCategory 
             onClick={()=>{ setSelectedCategory(category.name)  }}
             style={{
               background:category.name === selectedCategory ? '#FC1503' : undefined,
-              color: 'white'
+              color: theme === 'light' ? 'black' : 'white', 
             }}
             key={category.name}
           >
               <span style={{ color: category.name === selectedCategory ? 'white' : 'red', marginRight:'15px' }}>{category.icon}</span>
-              <span style={{ opacity:category.name  === selectedCategory ? '1' : '0.8' }}>{category.name}</span>
+              <span style={{ opacity:category.name  === selectedCategory ? '1' : '0.8', }}>{category.name}</span>
           </button>
       ))}
     </Stack>
