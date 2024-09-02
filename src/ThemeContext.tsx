@@ -12,7 +12,7 @@ type ThemeProviderType = {
 }
 
 export const ThemeProvider:React.FC<ThemeProviderType> = ({ children }) => {
-    const [ theme, setTheme ] = useState('light')
+    const [ theme, setTheme ] = useState('dark')
 
     const changeTheme = () => {
         setTheme(prevTheme => prevTheme === 'light' ? 'dark' : 'light')

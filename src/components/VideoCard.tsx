@@ -11,14 +11,17 @@ interface VideoCardProps {
 }
 
 const VideoCard: React.FC<VideoCardProps>  = ( { video: { id: { videoId }, snippet } } ) => {
-  
+  if (videoId == null) {
+    console.log('shou null');
+    
+  }
   return (
     // 每个视频框大小 移动端适配
-   <Card sx={{ width: { md: '295px', xs : '100%' }, boxShadow:'none', borderRadius:'0' }}>
+   <Card sx={{ width: { md: '290px', xs : '100%' }, boxShadow:'none', borderRadius:'0' }}>
         <Link to={videoId ? `/video/${videoId}` : demoVideoUrl}>
             <CardMedia  
             component="img"
-            sx={{ width: { xs:'100%', sm:'358px' }, height: 180}}
+            sx={{ height: 180}}
             alt={snippet?.title}
             image={snippet?.thumbnails?.high?.url} />
         </Link>

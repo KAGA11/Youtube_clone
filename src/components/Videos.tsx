@@ -12,16 +12,20 @@ const Videos:React.FC<VideosProps> = ( { videos,direction } ) => {
     
   return (
    <Stack direction={direction || "row"} flexWrap="wrap" justifyContent="start" gap={2}>
-        {videos?.map( (item,i) => (
-            <Box key={i}>
-                {/* itme 会返回视频或者一个作者的channel */}
-                {item.id.videoId ? (
-                  <VideoCard video={item as VideoWithVideoId} />
-                ) : item.id.channelId ? (
-                  <ChannelCard channelDetail={item as VideoWithChannelId} />
-                ) : null}
-            </Box>
-        ) )  }
+        {videos?.map( (item,i) => {
+          if (item.id.videoId || item.id.channelId) {
+            return (
+                <Box key={i}>
+                  {/* itme 会返回视频或者一个作者的channel */}
+                  {item.id.videoId ? (
+                    <VideoCard video={item as VideoWithVideoId} />
+                  ) : item.id.channelId ? (
+                    <ChannelCard channelDetail={item as VideoWithChannelId} />
+                  ) : null}
+                </Box>
+            )
+          }
+        })}
    </Stack>
   )
 }

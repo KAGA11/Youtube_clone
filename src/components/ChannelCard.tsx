@@ -51,7 +51,7 @@ const ChannelCard: React.FC<ChannelCardProps> = ( { channelDetail,marginTop } ) 
         display:'flex',
         justifyContent:'center',
         alignItems:'center',
-        width: { xs:'340px', md: '240px' },
+        width: { xs:'340px', md: '290px' },
         margin:'auto',
         marginTop,
       }}
